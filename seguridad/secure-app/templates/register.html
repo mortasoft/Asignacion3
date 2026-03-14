@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | UC Secure Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        :root {
+            --primary: #10b981; 
+            --bg-dark: #064e3b;
+            --glass-bg: rgba(6, 78, 59, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+    </div>
+
+    <main class="main-wrapper" style="justify-content: center;">
+        <div class="login-container" style="max-width: 450px;">
+            <header class="header">
+                <h1 style="color: #10b981;">Registro Seguro</h1>
+                <p class="subtitle">Cifrado de grado industrial para su cuenta</p>
+            </header>
+
+            {% if error %}
+            <div class="alert alert-error">{{ error }}</div>
+            {% endif %}
+
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label for="username">Nuevo Usuario</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="username" name="username" placeholder="ej. usuario_seguro" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Contraseña Fuerte</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn" style="background: var(--primary);">Crear Cuenta Protegida</button>
+            </form>
+
+            <div style="text-align: center; margin-top: 20px; font-size: 0.85rem;">
+                <p>¿Ya tienes cuenta? <a href="/" style="color: var(--primary); text-decoration: none;">Volver al login</a></p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

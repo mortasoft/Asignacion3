@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Access | Universidad Cenfotec</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        :root {
+            --primary: #10b981; /* Emerald */
+            --secondary: #059669;
+            --accent: #06b6d4;
+            --bg-dark: #064e3b; /* Dark Green */
+            --glass-bg: rgba(6, 78, 59, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="main-wrapper">
+        <div class="login-container">
+            <div class="logo-wrapper">
+                <div class="logo-icon" style="background: linear-gradient(135deg, #10b981, #06b6d4);">UC</div>
+            </div>
+
+            <header class="header">
+                <h1 style="background: linear-gradient(to right, #10b981, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">UC Secure Portal</h1>
+                <p class="subtitle">Entorno de Producción Mitigado</p>
+            </header>
+
+            {% if error %}
+            <div class="alert alert-error">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+                {{ error }}
+            </div>
+            {% endif %}
+
+            {% if success %}
+            <div class="alert alert-success">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                Autenticación Segura Exitosa para <strong>{{ user }}</strong>.
+            </div>
+            {% endif %}
+
+            {% if success_msg %}
+            <div class="alert alert-success">
+                {{ success_msg }}
+            </div>
+            {% endif %}
+
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Usuario Validado</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="username" name="username" placeholder="Username" required autocomplete="off">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Contraseña Cifrada</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn" style="background: linear-gradient(to right, #10b981, #06b6d4);">Validar Identidad</button>
+            </form>
+
+            <div style="text-align: center; margin-top: 20px; font-size: 0.85rem;">
+                <p>¿Nuevo usuario? <a href="/register" style="color: var(--primary); text-decoration: none; font-weight: 600;">Regístrate de forma segura</a></p>
+            </div>
+
+            <footer class="footer">
+                <p>&copy; 2026 Universidad Cenfotec. <br>Estándares de Seguridad Aplicada.</p>
+            </footer>
+        </div>
+
+        <aside class="instructions-card">
+            <h2 style="color: #10b981;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <polyline points="9 11 12 14 22 4"></polyline>
+                </svg>
+                Seguridad Implementada
+            </h2>
+
+            <div class="instruction-item">
+                <h3>Vulnerabilidad Mitigada</h3>
+                <p>Este portal utiliza <strong>Sentencias Preparadas</strong> (Parameterized Queries) para neutralizar cualquier intento de SQL Injection.</p>
+            </div>
+
+            <div class="instruction-item">
+                <h3>Criptografía de Contraseñas</h3>
+                <p>A diferencia del portal inseguro, aquí las contraseñas nunca viajan ni se almacenan en texto plano. Se utiliza <strong>BCrypt</strong> con Salt adaptativo.</p>
+            </div>
+
+            <div class="instruction-item">
+                <h3>Prueba de Penetración</h3>
+                <p>Intenta usar el payload anterior: <br><code>' OR '1'='1</code><br>Verás que el sistema lo trata como una cadena literal, fallando la autenticación de forma segura.</p>
+            </div>
+
+            <div class="instruction-item">
+                <h3>Auditoría</h3>
+                <p>El sistema rechaza peticiones incompletas y maneja errores sin revelar información sensible de la infraestructura de BD.</p>
+            </div>
+        </aside>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

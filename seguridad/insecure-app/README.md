@@ -67,5 +67,5 @@ Como `'1'='1'` siempre es verdadero, la base de datos retorna el primer registro
 Este código tiene **fines estrictamente educativos**. Los patrones de seguridad (o la falta de ellos) aquí mostrados no deben ser utilizados en entornos de producción bajo ninguna circunstancia.
 
 ---
-*Desarrollado para la especialización en Seguridad Informática - Universidad Cenfotec 2026.*
+*Desarrollado para el curso de Seguridad de Bases de Datos - Universidad Cenfotec 2026.*
 

@@ -1,53 +1,70 @@
-﻿# Repositorio de Asignacion de Seguridad
+# 🛡️ Universidad Cenfotec | Security Master Lab
 
-Este repositorio contiene ejemplos practicos de aplicaciones web con diferentes niveles de seguridad, disenados para fines educativos dentro de la Asignacion 3.
+![Security Lab Banner](./assets/banner.png)
 
----
-
-## Estructura del Repositorio
-
-El proyecto se divide en dos secciones principales dentro de la carpeta seguridad/:
-
-### 1. [App Insegura (Vulnerable)](./seguridad/insecure-app/README.md)
-Una aplicacion Flask basica que demuestra vulnerabilidades criticas como:
-- Inyeccion SQL: Manipulacion de consultas SQL a traves del formulario de login.
-- Manejo inseguro de datos: Falta de saneamiento de entradas.
-- Configuracion de base de datos: Uso de credenciales por defecto.
-
-### 2. App Segura
-Una version mejorada de la aplicacion que implementa mejores practicas de seguridad:
-- Consultas Parametrizadas: Prevencion de Inyeccion SQL.
-- Hashing de contrasenas: Uso de bcrypt para almacenar contrasenas de forma segura.
-- Saneamiento de entradas: Limpieza de datos recibidos del usuario.
+Este repositorio es el centro de operaciones para el estudio avanzado de **Seguridad de Aplicaciones y Bases de Datos**. Contiene un entorno comparativo diseñado para visualizar, explotar y mitigar vulnerabilidades críticas de seguridad.
 
 ---
 
-## Requisitos previos
+## 🏛️ Estructura del Laboratorio
 
-Para poder ejecutar cualquiera de las aplicaciones, asegurate de tener instalado:
-- Docker Desktop
-- Docker Compose
+El laboratorio está dividido en dos ecosistemas distintos que permiten un análisis forense y preventivo del software:
+
+### 🔴 [Entorno Inseguro (Vulnerable)](./seguridad/insecure-app/README.md)
+*Simulación controlada de una aplicación con fallos críticos.*
+- **Enfoque:** Explotación de SQL Injection.
+- **Tecnología:** Flask, MySQL 5.7, Glassmorphism UI.
+- **Objetivo:** Comprender la anatomía de un ataque y cómo la falta de saneamiento compromete el sistema.
+
+### 🟢 [Entorno Seguro (Mitigado)](./seguridad/secure-app/)
+*Implementación bajo estándares de seguridad industriales.*
+- **Enfoque:** Defensa en profundidad.
+- **Tecnologías:** SQLAlchemy (ORMs), Hashing de contraseñas, Manejo de sesiones seguras.
+- **Objetivo:** Demostrar la implementación de controles compensatorios y preventivos.
 
 ---
 
-## Como empezar
+## 🛠️ Requisitos de Operación
 
-Para correr cualquiera de las aplicaciones, navega al directorio correspondiente y usa docker-compose:
+Para desplegar cualquiera de los entornos, es indispensable contar con las siguientes herramientas instaladas:
 
+- **Plataforma:** [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- **Orquestador:** Docker Compose (v2+)
+- **Terminal:** PowerShell (Recomendado en Windows 11)
+
+---
+
+## 🚀 Despliegue Rápido (Quick Start)
+
+Para iniciar cualquiera de las aplicaciones desde la raíz del proyecto, ejecute:
+
+### Caso 1: Laboratorio Inseguro
+```powershell
 cd seguridad/insecure-app
-docker-compose up --build
+docker-compose up -d --build
+```
+*Acceso local:* [http://localhost:5000](http://localhost:5000)
 
-Una vez levantada, la aplicacion estara disponible en http://localhost:5000.
+### Caso 2: Laboratorio Seguro
+```powershell
+cd seguridad/secure-app
+docker-compose up -d --build
+```
+*Acceso local:* [http://localhost:5001](http://localhost:5001) *(Puerto por defecto del entorno seguro)*
 
 ---
 
-## Pruebas y Experimentos
+## 🔬 Metodología de Uso
 
-Este repositorio esta disenado para que experimentes con herramientas de seguridad. Puedes probar ataques de SQL Injection en la insecure-app y ver como fallan en la secure-app.
-
-Consulte el [README de la app insegura](./seguridad/insecure-app/README.md) para mas detalles sobre como realizar pruebas de inyeccion.
+1.  **Exploración:** Inicie el entorno inseguro y utilice las guías de explotación para realizar un bypass de login.
+2.  **Análisis:** Verifique los logs del contenedor para observar la consulta SQL generada.
+3.  **Comparación:** Despliegue el entorno seguro e intente replicar el ataque anterior para verificar la efectividad de los controles implementados.
+4.  **Documentación:** Revise los archivos `README.md` locales de cada aplicación para detalles técnicos específicos.
 
 ---
 
-### Autor
-Proyecto desarrollado para la asignacion de seguridad informatica.
+## ⚠️ Nota de Ética y Seguridad
+Todo el material presente es estrictamente para **fines académicos**. La intención de este laboratorio es formar profesionales con capacidad de defensa y arquitectura robusta.
+
+---
+**Universidad Cenfotec 2026** | 
