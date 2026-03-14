@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad de Bases de datos | Universidad Cenfotec</title>
+    <meta name="description" content="Laboratorio de Seguridad de Bases de Datos - Universidad Cenfotec">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="main-wrapper">
+        <div class="login-container">
+            <div class="logo-wrapper">
+                <div class="logo-icon">UC</div>
+            </div>
+
+            <header class="header">
+                <h1>Seguridad de bases de datos</h1>
+            </header>
+
+            {% if error %}
+            <div class="alert alert-error">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                        clip-rule="evenodd" />
+                </svg>
+                {{ error }}
+            </div>
+            {% endif %}
+
+            {% if success %}
+            <div class="alert alert-success">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd" />
+                </svg>
+                Bienvenido, <strong>{{ user }}</strong>. Acceso concedido satisfactoriamente.
+            </div>
+            {% endif %}
+
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Nombre de Usuario</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="username" name="username" placeholder="ej. admin" required
+                            autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña Maestra</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn">Acceder al Sistema</button>
+            </form>
+
+            <footer class="footer">
+                <p>&copy; 2026 Universidad Cenfotec. <br>Curso de Seguridad de Aplicaciones.</p>
+            </footer>
+        </div>
+
+        <aside class="instructions-card">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="M12 8v4"></path>
+                    <path d="M12 16h.01"></path>
+                </svg>
+                Laboratorio de Pruebas
+            </h2>
+
+            <div class="instruction-item">
+                <h3>Objetivo</h3>
+                <p>Identificar y explotar la vulnerabilidad de <strong>SQL Injection</strong> presente en el módulo de
+                    autenticación.</p>
+            </div>
+
+            <div class="instruction-item">
+                <h3>Credenciales Válidas</h3>
+                <p>Usuarios registrados en el sistema: <br>
+                    <code>admin</code> / <code>admin123</code><br>
+                    <code>user1</code> / <code>password1</code>
+                </p>
+            </div>
+
+            <div class="instruction-item">
+                <h3>Prueba de Concepto (PoC)</h3>
+                <p>Intenta evadir la contraseña usando un payload clásico en el campo de usuario o contraseña:</p>
+                <p><code> ' OR '1'='1 </code></p>
+                <p>Esto forzará a la consulta a retornar verdadero sin importar las credenciales.</p>
+            </div>
+
+            <div class="instruction-item">
+                <h3>Análisis</h3>
+                <p>Observa los logs del contenedor para ver la consulta SQL exacta que se genera dinámicamente.</p>
+            </div>
+        </aside>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
